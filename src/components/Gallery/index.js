@@ -2,8 +2,8 @@ import React from 'react'
 // imports helpers
 import { capitalizeFirstLetter } from '../../utils/helpers'
 //imports small photos
-import photo from "../../assets/small/commercial/0.jpg"
-// import PhotoList from "../PhotoList"
+// import photo from "../../assets/small/commercial/0.jpg"
+import PhotoList from "../PhotoList"
 
 // function Gallery(currentCategory) {
 //     // const currentGallery = {
@@ -21,22 +21,25 @@ import photo from "../../assets/small/commercial/0.jpg"
 // }
 
 function Gallery(props) {
-  const currentCategory = {
-    name: "commercial",
-    description:
-      "Photos of grocery stores, food trucks, and other commercial projects",
-  };
+//   const currentCategory = {
+//     name: "commercial",
+//     description:
+//       "Photos of grocery stores, food trucks, and other commercial projects",
+//   };
+    const { currentCategory } = props
   return (
     <section>
-      <h1>{capitalizeFirstLetter(currentCategory.name)}</h1>
-      <p>{currentCategory.name}</p>
-      <div className="flex-row">
+      <h1 data-testid="h1tag">{capitalizeFirstLetter(currentCategory.name)}</h1>
+      <p>{currentCategory.description}</p>
+      {/* <div className="flex-row">
           <img
             src={photo}
             alt="Commercial Example"
             className="img-thumbnail mx-1"
           />
-      </div>
+      </div> */}
+      {/* must have the category part to be used in PhotoList */}
+      <PhotoList category={currentCategory.name}/>
     </section>
   );
 }
