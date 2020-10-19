@@ -11,7 +11,7 @@ describe('PhotoList is rendering', () => {
     render(<PhotoList />);
   });
 
-  //snapshot test
+  //snapshot tes
 
   it('matchs snapshot', () => {
     const { asFragment } = render(<PhotoList />)

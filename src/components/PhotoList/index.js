@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 
 // import photo from '../../assets/small/commercial/0.jpg';
 
+//imports modal
+import Modal from '../Modal'
+
 
 // function PhotoList(props) {
 
@@ -107,8 +110,25 @@ const PhotoList = ({ category }) =>{
   
   const currentPhotos = photos.filter((photo) => photo.category === category)
 
+  // manages current photo state
+  const [currentPhoto, setCurrentPhoto] = useState()
+
+  //hook that manages if modal open or not
+  const [isModalOpen, setIsModelOpen] = useState(false)
+
+  //function that will toggle the modal with the selected photo
+  const toggleModal = (image, i) => {
+    //current photo
+    setCurrentPhoto({...image, index: i})
+    setIsModelOpen(!isModalOpen)
+  }
+
   return (
     <div>
+      {/* uses short-circuit AND operate to only render modal if isModalOpen is true */}
+      {isModalOpen && (
+        <Modal currentPhoto={currentPhoto} onClose={toggleModal} />
+      )}
         {/* <img
           src={photo}
           alt="Commercial Example"
@@ -119,6 +139,8 @@ const PhotoList = ({ category }) =>{
               src={require(`../../assets/small/${category}/${i}.jpg`)}
               alt={image.name}
               className="img-thumbnail mx-1"
+              // allows for selection of specific photo for modal
+              onClick={() => toggleModal(image, i)}
               key={image.name}
             />
           ))}
